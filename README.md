@@ -1,167 +1,101 @@
-# SIT305 Task 6.1D - LLM-Enhanced Learning Assistant App
+# SIT305 Task 10.1D - LLM-Enhanced Learning Assistant App
 
-This project is an Android learning assistant app developed for SIT305 Task 6.1D.
+## Overview
 
-The app allows students to sign up, select learning interests, complete learning tasks, generate AI hints, and receive AI explanations for their answers.
+This project is an improved version of the LLM-Enhanced Learning Assistant App developed for SIT305 Task 10.1D. The app helps students learn through interest-based quiz tasks, AI-generated hints, AI answer explanations, learning history, profile sharing, and account upgrade features.
 
-The LLM integration is handled through a local Node.js backend. The Android app does not store the API key directly.
+The Task 10.1D upgrade adds three new screens:
 
----
+- Profile
+- Learning History
+- Upgrade Account
+
+It also implements the required History, Sharing, and Purchasing features.
 
 ## Main Features
 
-- Login and sign up flow
-- Interest selection screen
-- Home screen with learning tasks based on selected interests
-- Multiple-choice task screen
-- Results screen with score, selected answer, and correct answer
-- AI-generated hint for a question
-- AI-generated explanation for the student's answer
-- Prompt and AI response displayed in the app UI
-- Loading and error handling for AI requests
+### 1. Account Setup and Interests
 
----
+Users can sign up or log in using a username and email. During setup, users select their learning interests. These interests are used to recommend learning tasks on the Home screen.
 
-## LLM Learning Utilities
+### 2. Learning Tasks
 
-This app includes two LLM-powered learning utilities.
+The app displays quiz-style learning tasks based on the selected interests. Each task contains multiple-choice questions. After completing a task, users can submit their answers and view their score, selected answers, correct answers, and correct/incorrect status.
 
-### 1. Generate Hint
+### 3. LLM-Powered Get Hint
 
-On the task screen, the student can tap **Get Hint**.
+While answering quiz questions, users can request an AI-generated hint. The app sends a structured prompt to the backend, which calls the Groq LLM API. The prompt and AI response are displayed in the UI.
 
-The app sends the topic, question, and answer options to the backend. The LLM returns a short beginner-friendly hint without directly revealing the answer.
+### 4. LLM-Powered Explain My Answer
 
-### 2. Explain My Answer
+After submitting a task, users can request an AI explanation for each answer. The app explains why the correct answer is correct and why the user’s selected answer is correct or incorrect.
 
-On the results screen, the student can tap **Explain My Answer**.
+### 5. Learning History
 
-The app sends the topic, question, correct answer, and the student's selected answer to the backend. The LLM returns a short explanation of why the answer is correct or incorrect.
+The Learning History screen stores question-based learning records. Each history item shows:
 
----
+- Topic
+- Question
+- Correct / Incorrect status
+- Answered timestamp
 
-## Technology Stack
+Each card can be expanded to show:
 
-### Android
+- User answer
+- Correct answer
+- AI hint, if requested
+- AI explanation, if requested
+- Hint and explanation timestamps
+
+If the user did not request a hint or explanation, the app displays “Not requested”.
+
+### 6. Profile
+
+The Profile screen shows:
+
+- Username
+- Email
+- Current account plan
+- Selected interests
+- Total questions answered
+- Correct answers
+- Incorrect answers
+
+Learning statistics are updated when the user submits quiz tasks.
+
+### 7. Share Profile
+
+The app uses Android’s native Share Intent to share a public profile summary. The shared content includes username, email, current plan, selected interests, and learning progress summary. Users can share this through supported apps such as Gmail, Messages, Drive, or other platforms.
+
+### 8. Upgrade Account with Stripe Test Payment
+
+The Upgrade Account screen includes three plans:
+
+- Starter
+- Intermediate
+- Advanced
+
+Starter is the default free plan. Intermediate and Advanced use Stripe Test Mode. The Android app requests a PaymentIntent from the Node.js backend. After successful test payment through Stripe PaymentSheet, the app updates the user’s current plan and displays it in the Profile screen.
+
+## Tech Stack
+
+### Android App
 
 - Kotlin
 - XML layouts
 - ViewBinding
-- Fragment navigation
-- ViewModel and LiveData
+- Fragment-based UI
+- Navigation Component
 - RecyclerView
+- SharedPreferences
 - Retrofit
+- Stripe Android SDK
 
 ### Backend
 
 - Node.js
 - Express
-- Groq API
+- Groq SDK
+- Stripe SDK
 - dotenv
-
----
-
-## Backend Setup
-
-The backend is required for real AI responses.
-
-Open the backend folder:
-
-```bash
-cd learning-ai-backend
-```
-
-Install backend dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file based on `.env.example`:
-
-```env
-GROQ_API_KEY=your_groq_api_key_here
-PORT=3000
-```
-
-Start the backend:
-
-```bash
-npm start
-```
-
-The backend should run at:
-
-```bash
-http://localhost:3000
-```
-
-The Android emulator connects to the local backend using:
-
-```bash
-http://10.0.2.2:3000/
-```
-
-This URL is configured in:
-
-```bash
-app/src/main/java/com/example/llm_enhancedlearningassistantapp/network/RetrofitClient.kt
-```
-
----
-
-## Running the App
-
-Start the backend first:
-
-```bash
-cd learning-ai-backend
-npm install
-npm start
-```
-
-Then open the Android project in Android Studio and run the app on an emulator.
-
-Use the app flow:
-
-```bash
-Sign Up -> Select Interests -> Login -> Home -> Task -> Results
-```
-
-On the task screen, tap:
-
-```bash
-Get Hint
-```
-
-On the results screen, tap:
-
-```bash
-Explain My Answer
-```
-
-The app displays both the prompt sent to the backend and the AI response returned from the backend.
-
----
-
-## Security Note
-
-The real API key should only be stored in:
-
-```bash
-learning-ai-backend/.env
-```
-
-This file is ignored by Git and should not be uploaded to GitHub.
-
-Only this example file is included in the repository:
-
-```bash
-learning-ai-backend/.env.example
-```
-
----
-
-## Author
-
-Thien Khang Nguyen
+- CORS
