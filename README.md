@@ -1,240 +1,126 @@
-# \# SIT305 Task 10.1D - LLM Learning Assistant App
+# SIT305 Task 10.1D - LLM Learning Assistant App
 
-# 
+## Overview
 
-# \## Overview
+This is an Android learning assistant app for SIT305 Task 10.1D.
 
-# 
+The app helps students practise learning tasks, get AI hints, review AI explanations, view learning history, share their profile, and upgrade their account using Stripe test payment.
 
-# This is an Android learning assistant app for SIT305 Task 10.1D.
+## Features
 
-# 
+- Sign up and log in
+- Select learning interests
+- Complete quiz-style learning tasks
+- Get AI hints for questions
+- Get AI explanations after answering
+- View expandable learning history
+- View profile and learning progress
+- Share profile using Android Share Sheet
+- Upgrade account using Stripe Test Mode
 
-# The app helps students practise learning tasks, get AI hints, review AI explanations, view learning history, share their profile, and upgrade their account using Stripe test payment.
+## Project Structure
 
-# 
+```text
+10.1D/
+├── app/                    # Android app
+├── learning-ai-backend/    # Node.js backend
+├── README.md
+└── build.gradle.kts
+```
 
-# \## Features
+## Requirements
 
-# 
+Install these before running the project:
 
-# \- Sign up and log in
+- Android Studio
+- Node.js
+- npm
+- Android Emulator
+- Groq API key
+- Stripe test secret key
 
-# \- Select learning interests
+## Backend Setup
 
-# \- Complete quiz-style learning tasks
+Open PowerShell and go to the backend folder:
 
-# \- Get AI hints for questions
+```powershell
+cd learning-ai-backend
+npm install
+```
 
-# \- Get AI explanations after answering
+Create a `.env` file inside `learning-ai-backend`.
 
-# \- View expandable learning history
+Use `.env.example` as a guide:
 
-# \- View profile and learning progress
+```env
+GROQ_API_KEY=your_groq_api_key_here
+STRIPE_SECRET_KEY=your_stripe_secret_key_here
+PORT=3000
+```
 
-# \- Share profile using Android Share Sheet
+Start the backend:
 
-# \- Upgrade account using Stripe Test Mode
+```powershell
+npm start
+```
 
-# 
+Expected result:
 
-# \## Project Structure
+```text
+Learning AI backend running on http://localhost:3000
+```
 
-# 
+Keep this terminal open while using the Android app.
 
-# ```text
+## Android Setup
 
-# 
+Open the project in Android Studio.
 
-# \## Requirements
+Build the app:
 
-# 
+```powershell
+.\gradlew assembleDebug
+```
 
-# Install these before running the project:
+Run the app on an Android Emulator.
 
-# 
+The app uses this backend URL for emulator testing:
 
-# \- Android Studio
+```text
+http://10.0.2.2:3000/
+```
 
-# \- Node.js
+## How to Use the App
 
-# \- npm
-
-# \- Android Emulator
-
-# \- Groq API key
-
-# \- Stripe test secret key
-
-# 
-
-# \## Backend Setup
-
-# 
-
-# Open PowerShell and go to the backend folder:
-
-# 
-
-# ```powershell
-
-# cd learning-ai-backend
-
-# npm install
-
-# ```
-
-# 
-
-# Create a `.env` file inside `learning-ai-backend`.
-
-# 
-
-# Use `.env.example` as a guide:
-
-# 
-
-# ```env
-
-# GROQ\_API\_KEY=your\_groq\_api\_key\_here
-
-# STRIPE\_SECRET\_KEY=your\_stripe\_secret\_key\_here
-
-# PORT=3000
-
-# ```
-
-# 
-
-# Start the backend:
-
-# 
-
-# ```powershell
-
-# npm start
-
-# ```
-
-# 
-
-# Expected result:
-
-# 
-
-# ```text
-
-# Learning AI backend running on http://localhost:3000
-
-# ```
-
-# 
-
-# Keep this terminal open while using the Android app.
-
-# 
-
-# \## Android Setup
-
-# 
-
-# Open the project in Android Studio.
-
-# 
-
-# Build the app:
-
-# 
-
-# ```powershell
-
-# .\\gradlew assembleDebug
-
-# ```
-
-# 
-
-# Run the app on an Android Emulator.
-
-# 
-
-# The app uses this backend URL for emulator testing:
-
-# 
-
-# ```text
-
-# http://10.0.2.2:3000/
-
-# ```
-
-# 
-
-# \## How to Use the App
-
-# 
-
-# 1\. Sign up with a username and email.
-
-# 2\. Select your learning interests.
-
-# 3\. Log in.
-
-# 4\. Choose a task from the Home screen.
-
-# 5\. Answer the quiz questions.
-
-# 6\. Use \*\*Get Hint\*\* if you need AI help.
-
-# 7\. Submit the task.
-
-# 8\. Use \*\*Explain My Answer\*\* to get AI feedback.
-
-# 9\. Open \*\*Learning History\*\* to review saved records.
-
-# 10\. Open \*\*Profile\*\* to view progress and share your profile.
-
-# 11\. Open \*\*Upgrade Account\*\* to test Stripe payment.
-
-# 
-
-# \## Stripe Test Payment
-
-# 
-
-# Use this test card:
-
-# 
-
-# ```text
-
-# Card number: 4242 4242 4242 4242
-
-# Expiry: 12/34
-
-# CVC: 123
-
-# Postcode: 3000
-
-# ```
-
-# 
-
-# After successful payment, the Profile screen will show the updated account plan.
-
-# 
-
-# \## Notes
-
-# 
-
-# \- This app uses Stripe Test Mode only.
-
-# \- No real money is charged.
-
-# \- The backend must be running for AI and payment features to work.
-
-# \- Do not upload `.env` to GitHub.
-
-# \- Do not upload `local.properties` to GitHub.
-
+1. Sign up with a username and email.
+2. Select your learning interests.
+3. Log in.
+4. Choose a task from the Home screen.
+5. Answer the quiz questions.
+6. Use **Get Hint** if you need AI help.
+7. Submit the task.
+8. Use **Explain My Answer** to get AI feedback.
+9. Open **Learning History** to review saved records.
+10. Open **Profile** to view progress and share your profile.
+11. Open **Upgrade Account** to test Stripe payment.
+
+## Stripe Test Payment
+
+Use this test card:
+
+```text
+Card number: 4242 4242 4242 4242
+Expiry: 12/34
+CVC: 123
+Postcode: 3000
+```
+
+After successful payment, the Profile screen will show the updated account plan.
+
+## Notes
+
+- This app uses Stripe Test Mode only.
+- No real money is charged.
+- The backend must be running for AI and payment features to work.
+- Do not upload `.env` to GitHub.
+- Do not upload `local.properties` to GitHub.
