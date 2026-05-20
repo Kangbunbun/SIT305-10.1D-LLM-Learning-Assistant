@@ -1,0 +1,34 @@
+# Android / Gradle generated files
+.gradle/
+build/
+app/build/
+*/build/
+.kotlin/
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Android Studio / IntelliJ local files
+.idea/
+*.iml
+
+# Local Android config
+local.properties
+
+# Backend generated files and secrets
+learning-ai-backend/node_modules/
+learning-ai-backend/.env
+learning-ai-backend/.env.*
+**/node_modules/
+**/.env
+**/.env.*
+
+# Generated app packages
+*.apk
+*.aab
+
+# OS files
+.DS_Store
+Thumbs.db
+
+!learning-ai-backend/.env.example

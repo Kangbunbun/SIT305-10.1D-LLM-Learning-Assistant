@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signUpFragment">
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.auth.SignUpFragment"
+        android:label="Sign Up"
+        tools:layout="@layout/fragment_sign_up">
+
+        <action
+            android:id="@+id/action_signUpFragment_to_interestsFragment"
+            app:destination="@id/interestsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/interestsFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.interests.InterestsFragment"
+        android:label="Your Interests"
+        tools:layout="@layout/fragment_interests">
+
+        <action
+            android:id="@+id/action_interestsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_upgradeFragment"
+            app:destination="@id/upgradeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.task.TaskFragment"
+        android:label="Task"
+        tools:layout="@layout/fragment_task">
+
+        <argument
+            android:name="task"
+            app:argType="com.example.llm_enhancedlearningassistantapp.model.Task" />
+
+        <action
+            android:id="@+id/action_taskFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.results.ResultsFragment"
+        android:label="Results"
+        tools:layout="@layout/fragment_results">
+
+        <argument
+            android:name="result"
+            app:argType="com.example.llm_enhancedlearningassistantapp.model.TaskResult" />
+
+        <action
+            android:id="@+id/action_resultsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_profileFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_upgradeFragment"
+            app:destination="@id/upgradeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.history.HistoryFragment"
+        android:label="Learning History"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/upgradeFragment"
+        android:name="com.example.llm_enhancedlearningassistantapp.ui.upgrade.UpgradeFragment"
+        android:label="Upgrade Account"
+        tools:layout="@layout/fragment_upgrade">
+
+        <action
+            android:id="@+id/action_upgradeFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
