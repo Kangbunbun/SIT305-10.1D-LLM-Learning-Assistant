@@ -1,101 +1,240 @@
-# SIT305 Task 10.1D - LLM-Enhanced Learning Assistant App
+# \# SIT305 Task 10.1D - LLM Learning Assistant App
 
-## Overview
+# 
 
-This project is an improved version of the LLM-Enhanced Learning Assistant App developed for SIT305 Task 10.1D. The app helps students learn through interest-based quiz tasks, AI-generated hints, AI answer explanations, learning history, profile sharing, and account upgrade features.
+# \## Overview
 
-The Task 10.1D upgrade adds three new screens:
+# 
 
-- Profile
-- Learning History
-- Upgrade Account
+# This is an Android learning assistant app for SIT305 Task 10.1D.
 
-It also implements the required History, Sharing, and Purchasing features.
+# 
 
-## Main Features
+# The app helps students practise learning tasks, get AI hints, review AI explanations, view learning history, share their profile, and upgrade their account using Stripe test payment.
 
-### 1. Account Setup and Interests
+# 
 
-Users can sign up or log in using a username and email. During setup, users select their learning interests. These interests are used to recommend learning tasks on the Home screen.
+# \## Features
 
-### 2. Learning Tasks
+# 
 
-The app displays quiz-style learning tasks based on the selected interests. Each task contains multiple-choice questions. After completing a task, users can submit their answers and view their score, selected answers, correct answers, and correct/incorrect status.
+# \- Sign up and log in
 
-### 3. LLM-Powered Get Hint
+# \- Select learning interests
 
-While answering quiz questions, users can request an AI-generated hint. The app sends a structured prompt to the backend, which calls the Groq LLM API. The prompt and AI response are displayed in the UI.
+# \- Complete quiz-style learning tasks
 
-### 4. LLM-Powered Explain My Answer
+# \- Get AI hints for questions
 
-After submitting a task, users can request an AI explanation for each answer. The app explains why the correct answer is correct and why the user’s selected answer is correct or incorrect.
+# \- Get AI explanations after answering
 
-### 5. Learning History
+# \- View expandable learning history
 
-The Learning History screen stores question-based learning records. Each history item shows:
+# \- View profile and learning progress
 
-- Topic
-- Question
-- Correct / Incorrect status
-- Answered timestamp
+# \- Share profile using Android Share Sheet
 
-Each card can be expanded to show:
+# \- Upgrade account using Stripe Test Mode
 
-- User answer
-- Correct answer
-- AI hint, if requested
-- AI explanation, if requested
-- Hint and explanation timestamps
+# 
 
-If the user did not request a hint or explanation, the app displays “Not requested”.
+# \## Project Structure
 
-### 6. Profile
+# 
 
-The Profile screen shows:
+# ```text
 
-- Username
-- Email
-- Current account plan
-- Selected interests
-- Total questions answered
-- Correct answers
-- Incorrect answers
+# 
 
-Learning statistics are updated when the user submits quiz tasks.
+# \## Requirements
 
-### 7. Share Profile
+# 
 
-The app uses Android’s native Share Intent to share a public profile summary. The shared content includes username, email, current plan, selected interests, and learning progress summary. Users can share this through supported apps such as Gmail, Messages, Drive, or other platforms.
+# Install these before running the project:
 
-### 8. Upgrade Account with Stripe Test Payment
+# 
 
-The Upgrade Account screen includes three plans:
+# \- Android Studio
 
-- Starter
-- Intermediate
-- Advanced
+# \- Node.js
 
-Starter is the default free plan. Intermediate and Advanced use Stripe Test Mode. The Android app requests a PaymentIntent from the Node.js backend. After successful test payment through Stripe PaymentSheet, the app updates the user’s current plan and displays it in the Profile screen.
+# \- npm
 
-## Tech Stack
+# \- Android Emulator
 
-### Android App
+# \- Groq API key
 
-- Kotlin
-- XML layouts
-- ViewBinding
-- Fragment-based UI
-- Navigation Component
-- RecyclerView
-- SharedPreferences
-- Retrofit
-- Stripe Android SDK
+# \- Stripe test secret key
 
-### Backend
+# 
 
-- Node.js
-- Express
-- Groq SDK
-- Stripe SDK
-- dotenv
-- CORS
+# \## Backend Setup
+
+# 
+
+# Open PowerShell and go to the backend folder:
+
+# 
+
+# ```powershell
+
+# cd learning-ai-backend
+
+# npm install
+
+# ```
+
+# 
+
+# Create a `.env` file inside `learning-ai-backend`.
+
+# 
+
+# Use `.env.example` as a guide:
+
+# 
+
+# ```env
+
+# GROQ\_API\_KEY=your\_groq\_api\_key\_here
+
+# STRIPE\_SECRET\_KEY=your\_stripe\_secret\_key\_here
+
+# PORT=3000
+
+# ```
+
+# 
+
+# Start the backend:
+
+# 
+
+# ```powershell
+
+# npm start
+
+# ```
+
+# 
+
+# Expected result:
+
+# 
+
+# ```text
+
+# Learning AI backend running on http://localhost:3000
+
+# ```
+
+# 
+
+# Keep this terminal open while using the Android app.
+
+# 
+
+# \## Android Setup
+
+# 
+
+# Open the project in Android Studio.
+
+# 
+
+# Build the app:
+
+# 
+
+# ```powershell
+
+# .\\gradlew assembleDebug
+
+# ```
+
+# 
+
+# Run the app on an Android Emulator.
+
+# 
+
+# The app uses this backend URL for emulator testing:
+
+# 
+
+# ```text
+
+# http://10.0.2.2:3000/
+
+# ```
+
+# 
+
+# \## How to Use the App
+
+# 
+
+# 1\. Sign up with a username and email.
+
+# 2\. Select your learning interests.
+
+# 3\. Log in.
+
+# 4\. Choose a task from the Home screen.
+
+# 5\. Answer the quiz questions.
+
+# 6\. Use \*\*Get Hint\*\* if you need AI help.
+
+# 7\. Submit the task.
+
+# 8\. Use \*\*Explain My Answer\*\* to get AI feedback.
+
+# 9\. Open \*\*Learning History\*\* to review saved records.
+
+# 10\. Open \*\*Profile\*\* to view progress and share your profile.
+
+# 11\. Open \*\*Upgrade Account\*\* to test Stripe payment.
+
+# 
+
+# \## Stripe Test Payment
+
+# 
+
+# Use this test card:
+
+# 
+
+# ```text
+
+# Card number: 4242 4242 4242 4242
+
+# Expiry: 12/34
+
+# CVC: 123
+
+# Postcode: 3000
+
+# ```
+
+# 
+
+# After successful payment, the Profile screen will show the updated account plan.
+
+# 
+
+# \## Notes
+
+# 
+
+# \- This app uses Stripe Test Mode only.
+
+# \- No real money is charged.
+
+# \- The backend must be running for AI and payment features to work.
+
+# \- Do not upload `.env` to GitHub.
+
+# \- Do not upload `local.properties` to GitHub.
+
